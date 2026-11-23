@@ -1,0 +1,360 @@
+/* ============================================================
+   TECNOGLASS — Landing "Divisor de Águas" (estilo editorial AEX)
+   Paleta original do template AEX, mantida por decisão do cliente
+   (creme, grafite, azul-acinzentado, olive escuro).
+   ============================================================ */
+:root {
+  --cream: #ebedea;
+  --cream-2: #f4f6f3;
+  --ink: #2d322f;
+  --slate: #3F556B;
+  --forest: #1e2420;
+  --forest-hover: #414f3f;
+  --line: rgba(45, 50, 47, 0.1);
+  --line-dark: rgba(255, 255, 255, 0.1);
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-accent: "Playfair Display", Georgia, serif;
+  --font-text: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --container: 1400px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body.aex {
+  margin: 0;
+  font-family: var(--font-text);
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { display: block; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--slate); color: #fff; }
+:focus-visible { outline: 3px solid var(--slate); outline-offset: 3px; }
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+.wrap { width: min(var(--container), calc(100% - 48px)); margin-inline: auto; }
+
+.skip-link { position: fixed; left: 16px; top: 12px; z-index: 9999; padding: 10px 14px; background: var(--slate); color: #fff; font-weight: 600; transform: translateY(-140%); transition: transform 0.2s ease; }
+.skip-link:focus { transform: translateY(0); }
+
+/* Entrada cinematográfica + revelação ao rolar */
+@keyframes animationIn { 0% { opacity: 0; transform: translateY(30px); filter: blur(8px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
+.animate-on-scroll { animation-play-state: paused; }
+.animate-on-scroll.animate { animation-play-state: running; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+}
+
+/* ============================================================
+   CABEÇALHO
+   ============================================================ */
+.aex-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line); background: rgba(235, 237, 234, 0.9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.aex-header .wrap { height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.aex-logo img { height: 34px; width: auto; }
+.aex-nav { display: flex; gap: 40px; }
+.aex-nav a { position: relative; padding: 8px 0; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(45, 50, 47, 0.7); transition: color 0.3s; }
+.aex-nav a::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--slate); opacity: 0; transition: opacity 0.3s; }
+.aex-nav a:hover { color: var(--ink); }
+.aex-nav a:hover::after { opacity: 1; }
+.aex-actions { display: flex; align-items: center; gap: 24px; }
+.aex-actions .aex-phone-ic { color: var(--ink); transition: color 0.3s; }
+.aex-actions .aex-phone-ic:hover { color: var(--slate); }
+.aex-cta-solid { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff; padding: 13px 24px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; transition: background-color 0.3s; }
+.aex-cta-solid:hover { background: var(--slate); }
+.aex-cta-solid span { color: rgba(255, 255, 255, 0.5); }
+@media (max-width: 900px) { .aex-nav { display: none; } }
+@media (max-width: 460px) {
+  .aex-header .wrap { height: 68px; }
+  .aex-cta-solid span { display: none; }
+  .aex-cta-solid { padding: 12px 16px; }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.aex-hero { position: relative; width: 100%; padding: 56px 0 64px; overflow: hidden; }
+.aex-hero-grid { display: flex; flex-direction: column-reverse; gap: 48px; align-items: center; }
+@media (min-width: 1024px) { .aex-hero-grid { flex-direction: row; gap: 56px; } }
+
+.aex-hero-copy { width: 100%; display: flex; flex-direction: column; align-items: flex-end; text-align: right; padding-block: 20px; position: relative; }
+@media (min-width: 1024px) { .aex-hero-copy { width: 38%; flex: none; } }
+.aex-hero-copy h1 { position: relative; display: flex; flex-direction: column; align-items: flex-end; width: 100%; margin: 0; }
+.aex-h1-line { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.85; color: var(--ink); font-size: clamp(3.2rem, 9vw, 6.4rem); }
+@media (min-width: 1024px) { .aex-h1-line { font-size: clamp(3rem, 5.6vw, 6.4rem); } }
+.aex-hero-tagline { font-family: var(--font-accent); font-style: italic; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--slate); margin: 30px 0 4px; }
+.aex-hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; margin-top: 28px; }
+.aex-btn-solid { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; padding: 17px 38px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; transition: background-color 0.3s; }
+.aex-btn-solid:hover { background: var(--slate); }
+.aex-hero-alt { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(45, 50, 47, 0.65); border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: color 0.3s; }
+.aex-hero-alt:hover { color: var(--slate); }
+
+/* Persianas fotográficas (5 produtos reais em leque) */
+.aex-carousel { width: 100%; min-width: 0; position: relative; }
+@media (min-width: 1024px) { .aex-carousel { flex: 1; } }
+.aex-slides { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--forest); box-shadow: 0 30px 70px rgba(30, 36, 32, 0.28); touch-action: pan-y; }
+@media (min-width: 641px) { .aex-slides { aspect-ratio: 4 / 3; } }
+.aex-slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity 0.9s ease, visibility 0s linear 0.9s; }
+.aex-slide.is-active { opacity: 1; visibility: visible; z-index: 2; transition: opacity 0.9s ease; }
+.aex-slide-bg { position: absolute; inset: -8%; width: 116%; height: 116%; object-fit: cover; filter: blur(28px) saturate(1.1) brightness(0.8); }
+.aex-slide-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform: scale(1); transition: transform 8s ease-out; }
+.aex-slide.is-active .aex-slide-img { transform: scale(1.04); }
+@media (min-width: 641px) {
+  .aex-slide.is-wide .aex-slide-bg { display: none; }
+  .aex-slide.is-wide .aex-slide-img { object-fit: cover; }
+}
+.aex-slide figcaption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 64px 22px 18px; background: linear-gradient(to top, rgba(20, 24, 21, 0.8), transparent); color: #fff; font-family: var(--font-display); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+.aex-slide figcaption::before { content: ""; width: 28px; height: 1px; background: rgba(255, 255, 255, 0.7); }
+
+.aex-carousel-ui { display: flex; align-items: center; gap: 18px; margin-top: 14px; }
+.aex-carousel-count { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.08em; color: rgba(45, 50, 47, 0.6); white-space: nowrap; }
+.aex-carousel-count b { color: var(--ink); font-weight: 600; }
+.aex-carousel-bar { flex: 1; height: 2px; background: var(--line); overflow: hidden; }
+.aex-carousel-bar span { display: block; width: 100%; height: 100%; background: var(--slate); transform-origin: left; transform: scaleX(0); animation: aex-progress 6s linear forwards; }
+.aex-carousel.is-paused .aex-carousel-bar span { animation-play-state: paused; }
+@keyframes aex-progress { to { transform: scaleX(1); } }
+.aex-carousel-btns { display: flex; gap: 8px; }
+.aex-carousel-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(45, 50, 47, 0.35); background: transparent; color: var(--ink); cursor: pointer; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+.aex-carousel-btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+.aex-carousel-btn.prev .ic { transform: rotate(180deg); }
+
+.aex-thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; }
+.aex-thumb { display: block; padding: 0; border: 0; background: var(--forest); aspect-ratio: 4 / 3; overflow: hidden; cursor: pointer; opacity: 0.5; transition: opacity 0.3s; outline-offset: 2px; }
+.aex-thumb:hover { opacity: 0.85; }
+.aex-thumb[aria-current="true"] { opacity: 1; outline: 2px solid var(--slate); }
+.aex-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aex-slide, .aex-slide.is-active { transition: none; }
+  .aex-slide-img, .aex-slide.is-active .aex-slide-img { transform: none; transition: none; }
+  .aex-carousel-bar span { animation: none; transform: scaleX(1); }
+}
+
+/* ============================================================
+   SETORES — O divisor: novo × reparo
+   ============================================================ */
+.aex-fork { width: 100%; }
+.aex-fork-grid { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .aex-fork-grid { grid-template-columns: 1fr 1fr; min-height: 78vh; } }
+
+.aex-fork-panel { position: relative; overflow: hidden; height: 460px; cursor: pointer; background: var(--ink); }
+@media (min-width: 900px) { .aex-fork-panel { height: auto; } }
+.aex-fork-panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease;  filter: grayscale(0%);
+    transition: filter 0.5s ease;}
+.aex-fork-panel:hover img { transform: scale(1.06);  filter: grayscale(100%); }
+.aex-fork-panel::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(30, 36, 32, 0.86) 0%, rgba(30, 36, 32, 0.15) 55%); pointer-events: none; }
+.aex-fork-hit { position: absolute; inset: 0; z-index: 4; }
+
+.aex-fork-tag { position: relative; z-index: 2; display: block; padding: 32px 32px 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.aex-fork-content { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 0 32px 36px; color: #fff; }
+.aex-fork-content h3 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95; font-size: clamp(2rem, 4vw, 3.2rem); text-shadow: 0 4px 18px rgba(0,0,0,0.4); }
+.aex-fork-content p { margin: 0 0 20px; max-width: 42ch; font-size: 0.94rem; line-height: 1.6; color: rgba(255,255,255,0.82); opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.aex-fork-panel:hover .aex-fork-content p, .aex-fork-panel:focus-within .aex-fork-content p { opacity: 1; transform: none; }
+.aex-fork-pill { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); padding: 13px 24px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: background-color 0.3s, color 0.3s; }
+.aex-fork-panel:hover .aex-fork-pill { background: var(--slate); color: #fff; }
+.aex-fork-pill .ic { width: 16px; height: 16px; stroke-width: 2.2; transition: transform 0.25s; }
+.aex-fork-panel:hover .aex-fork-pill .ic { transform: translateX(3px); }
+
+/* ============================================================
+   DOUTRINA (faixa escura, manifesto)
+   ============================================================ */
+.aex-doctrine { position: relative; width: 100%; background: #09446b; overflow: hidden; }
+.aex-doctrine::before { content: ""; position: absolute; inset: 0; opacity: 0.06; pointer-events: none; background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 64px 64px; }
+.aex-doctrine::after { content: ""; position: absolute; inset: 0 0 auto 0; height: 1px; background: rgba(255,255,255,0.1); }
+.aex-doctrine-inner { position: relative; max-width: 1100px; margin-inline: auto; padding: 96px 24px; text-align: center; }
+.aex-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 32px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.aex-eyebrow::before, .aex-eyebrow::after { content: ""; width: 40px; height: 1px; background: rgba(63, 85, 107, 0.7); }
+.aex-doctrine h2 { margin: 0; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.9; color: #fff; font-size: clamp(2.4rem, 6vw, 4.4rem); }
+.aex-doctrine h2 span { color: var(--slate); }
+.aex-doctrine p { margin: 32px auto 0; max-width: 40ch; font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6; color: rgba(255,255,255,0.6); }
+.aex-rule { display: block; width: 80px; height: 1px; margin: 40px auto 0; background: rgba(63, 85, 107, 0.6); }
+
+/* ============================================================
+   MÉTRICAS
+   ============================================================ */
+.aex-metrics { background: var(--forest); border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
+.aex-metrics-grid { max-width: var(--container); margin-inline: auto; display: grid; grid-template-columns: repeat(2, 1fr); text-align: center; }
+@media (min-width: 900px) { .aex-metrics-grid { grid-template-columns: repeat(4, 1fr); } }
+.aex-metric { padding: 64px 20px; border-bottom: 1px solid var(--line-dark); }
+.aex-metrics-grid > *:nth-child(odd) { border-right: 1px solid var(--line-dark); }
+@media (min-width: 900px) { .aex-metric { border-bottom: 0 !important; border-right: 1px solid var(--line-dark) !important; } .aex-metric:last-child { border-right: 0 !important; } }
+.aex-metric strong { display: block; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.03em; color: #fff; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1; }
+.aex-metric strong small { font-size: 1.5rem; color: var(--slate); margin-left: 4px; }
+.aex-metric span { display: block; margin-top: 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.aex-metrics-note { text-align: center; padding: 14px 20px 28px; font-size: 0.76rem; color: rgba(255,255,255,0.4); background: var(--forest); }
+
+/* ============================================================
+   BENEFÍCIOS
+   ============================================================ */
+.aex-benefits { background: var(--cream-2); padding: 88px 0; }
+.aex-benefits-head { text-align: center; max-width: 560px; margin: 0 auto 56px; }
+.aex-benefits-head .aex-eyebrow { color: rgba(45, 50, 47, 0.5); }
+.aex-benefits-head .aex-eyebrow::before, .aex-benefits-head .aex-eyebrow::after { background: rgba(63, 85, 107, 0.35); }
+.aex-benefits-head h2 { margin: 0; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; color: var(--ink); font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+.aex-benefits-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+@media (min-width: 640px) { .aex-benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .aex-benefits-grid { grid-template-columns: repeat(5, 1fr); gap: 24px; } }
+.aex-benefit { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.aex-benefit .ic { width: 30px; height: 30px; color: var(--slate); stroke-width: 1.3; }
+.aex-benefit h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); }
+.aex-benefit p { margin: 0; font-size: 0.86rem; line-height: 1.55; color: rgba(45, 50, 47, 0.65); max-width: 26ch; }
+
+/* ============================================================
+   VITRINE (soluções em destaque)
+   ============================================================ */
+.aex-showcase { max-width: var(--container); margin-inline: auto; padding: 112px 24px; }
+.aex-showcase-head { display: flex; flex-direction: column; gap: 20px; margin-bottom: 72px; }
+@media (min-width: 768px) { .aex-showcase-head { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+.aex-showcase-head h2 { margin: 0 0 14px; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; color: var(--ink); font-size: clamp(2rem, 4vw, 3.2rem); }
+.aex-showcase-head h2 span { color: var(--slate); }
+.aex-showcase-head p { margin: 0; max-width: 46ch; color: rgba(45, 50, 47, 0.7); }
+.aex-showcase-link { display: inline-flex; align-items: center; gap: 10px; padding: 13px 24px; border: 1px solid rgba(45, 50, 47, 0.2); background: var(--cream); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: background-color 0.3s, border-color 0.3s, color 0.3s; flex: none; }
+.aex-showcase-link:hover { background: var(--slate); border-color: var(--slate); color: #fff; }
+
+.aex-cards { display: grid; grid-template-columns: 1fr; gap: 32px; }
+@media (min-width: 768px) { .aex-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .aex-cards { grid-template-columns: repeat(3, 1fr); } }
+.aex-card { display: flex; flex-direction: column; background: var(--cream); border: 1px solid var(--line); transition: box-shadow 0.3s; }
+.aex-card:hover { box-shadow: 0 8px 32px rgba(63, 85, 107, 0.1); }
+.aex-card-media { position: relative; aspect-ratio: 4 / 5; background: #fff; overflow: hidden; padding: 28px; display: flex; align-items: center; justify-content: center; }
+.aex-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.aex-card:hover .aex-card-media img { transform: scale(1.05); }
+.aex-card-badge { position: absolute; top: 16px; left: 16px; z-index: 2; background: var(--slate); color: #fff; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.aex-card-body { display: flex; flex-direction: column; flex-grow: 1; padding: 24px; }
+.aex-card-title { margin: 0 0 12px; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1.4rem; color: var(--ink); border-bottom: 2px solid var(--slate); display: inline-block; padding-bottom: 4px; width: fit-content; }
+.aex-card-body > p { margin: 0 0 18px; font-size: 0.88rem; color: rgba(45,50,47,0.65); line-height: 1.55; }
+.aex-spec-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0; margin: auto 0 20px; }
+.aex-spec-row div { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.aex-spec-row .ic { color: var(--slate); width: 17px; height: 17px; }
+.aex-spec-row span { font-family: var(--font-display); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(45,50,47,0.6); }
+.aex-card-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: transparent; border: 1px solid var(--ink); color: var(--ink); padding: 13px; font-family: inherit; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: background-color 0.3s, border-color 0.3s, color 0.3s; }
+.aex-card-btn:hover { background: var(--slate); border-color: var(--slate); color: #fff; }
+
+/* ============================================================
+   QUEBRA IMERSIVA (foto de tela cheia)
+   ============================================================ */
+.aex-immersive { position: relative; height: 78vh; min-height: 460px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--forest); }
+.aex-immersive::before { content: ""; position: absolute; inset-inline: 0; top: 0; height: 190px; z-index: 1; background: linear-gradient(180deg, rgba(63,85,107,0.6), transparent); pointer-events: none; }
+.aex-immersive img { position: absolute; inset: -30% 0 0 0; width: 100%; height: 160%; object-fit: cover; object-position: center 35%; will-change: transform; }
+.aex-immersive-veil { position: absolute; inset: 0; background: rgba(30, 36, 32, 0.34); mix-blend-mode: multiply; }
+.aex-immersive h2 { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; margin: 48px 0 0; }
+.aex-immersive-line { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.85; color: #fff; text-shadow: 0 8px 30px rgba(0,0,0,0.4); font-size: clamp(2.6rem, 8vw, 6.5rem); }
+.aex-immersive-accent {
+    display: inline-block;
+    max-width: 410px;
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 20px;
+    line-height: 1.4;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.aex-immersive-accent b {
+    display: block;
+    font-size: 38px;
+    font-style: italic;
+    font-weight: 400;
+    color: #fff;
+}
+
+.aex-immersive-accent i {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 768px) {
+    .aex-immersive-accent {
+        max-width: 300px;
+    }
+
+    .aex-immersive-accent b {
+        font-size: 30px;
+    }
+
+    .aex-immersive-accent i {
+        font-size: 15px;
+    }
+}
+
+/* ============================================================
+   APLICAÇÕES (setores reais atendidos)
+   ============================================================ */
+.aex-apps { max-width: var(--container); margin-inline: auto; padding: 120px 24px; border-bottom: 1px solid var(--line); }
+.aex-apps-head { text-align: center; margin-bottom: 80px; }
+.aex-apps-head h2 { margin: 32px 0 0; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.98; color: var(--ink); font-size: clamp(2rem, 4vw, 3.2rem); }
+.aex-apps-head h2 span { color: var(--slate); }
+.aex-apps-head p { margin: 28px auto 0; max-width: 42ch; color: rgba(45,50,47,0.65); font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.6; }
+
+.aex-app-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+@media (min-width: 860px) { .aex-app-grid { grid-template-columns: repeat(3, 1fr); gap: 44px; } }
+.aex-app { display: flex; flex-direction: column; }
+.aex-app-photo { aspect-ratio: 3 / 4; width: 100%; overflow: hidden; background: var(--ink); margin-bottom: 22px; }
+.aex-app-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+.aex-app:hover .aex-app-photo img { transform: scale(1.05); }
+.aex-app h3 { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.55rem; text-transform: uppercase; letter-spacing: -0.02em; color: var(--ink); }
+.aex-app-tag { display: block; margin-bottom: 12px; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); }
+.aex-app p { margin: 0; color: rgba(45,50,47,0.65); font-size: 0.98rem; line-height: 1.55; }
+@media (min-width: 860px) { .aex-app:nth-child(2) { margin-top: 56px; } }
+
+/* ============================================================
+   CTA FINAL (repete o divisor)
+   ============================================================ */
+.aex-cta { background: var(--cream-2); padding: 100px 24px; text-align: center; }
+.aex-cta-inner { max-width: 760px; margin-inline: auto; }
+.aex-cta-rule { display: block; width: 64px; height: 1px; margin: 0 auto 36px; background: rgba(63, 85, 107, 0.4); }
+.aex-cta-kicker { display: block; margin-bottom: 22px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(45,50,47,0.55); }
+.aex-cta h2 { margin: 0 0 30px; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); font-size: clamp(1.8rem, 3.6vw, 2.9rem); }
+.aex-cta-buttons { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+@media (min-width: 600px) { .aex-cta-buttons { flex-direction: row; } }
+.aex-btn-line { color: rgba(45, 50, 47, 0.75); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 3px; transition: color 0.3s; }
+.aex-btn-line:hover { color: var(--slate); }
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+.aex-footer { background: var(--forest); color: #fff; padding: 96px 0 48px; border-top: 4px solid var(--slate); }
+.aex-footer .wrap { max-width: var(--container); }
+.aex-footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 80px; }
+@media (min-width: 700px) { .aex-footer-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .aex-footer-grid { grid-template-columns: 1.6fr repeat(3, 1fr); } }
+.aex-footer-brand h3 { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1.35rem; color: #fff; }
+.aex-footer-brand h3 .ic { color: var(--slate); width: 22px; height: 22px; }
+.aex-footer-brand > p { margin: 0 0 24px; max-width: 34ch; font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.6); }
+.aex-footer-contact { display: flex; flex-wrap: wrap; gap: 12px; }
+.aex-footer-contact a { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border: 1px solid var(--line-dark); background: rgba(255,255,255,0.03); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; color: #fff; transition: background-color 0.3s, border-color 0.3s; }
+.aex-footer-contact a:hover { background: var(--slate); border-color: var(--slate); }
+.aex-footer-contact .ic { color: var(--slate); width: 17px; height: 17px; }
+.aex-footer-contact a:hover .ic { color: #fff; }
+
+.aex-footer h4 { margin: 0 0 24px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); }
+.aex-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 15px; }
+.aex-footer ul a { font-size: 0.88rem; color: rgba(255,255,255,0.6); transition: color 0.3s; }
+.aex-footer ul a:hover { color: #fff; }
+
+.aex-footer-bottom { display: flex; flex-direction: column; gap: 20px; align-items: center; justify-content: space-between; padding-top: 32px; border-top: 1px solid var(--line-dark); text-align: center; }
+@media (min-width: 700px) { .aex-footer-bottom { flex-direction: row; text-align: left; } }
+.aex-footer-bottom-brand { display: flex; align-items: center; gap: 16px; }
+.aex-footer-bottom-brand img { height: 26px; width: auto; filter: brightness(0) invert(1); }
+.aex-footer-bottom-brand p { margin: 0; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.aex-footer-social { display: flex; gap: 20px; }
+.aex-footer-social a { color: rgba(255,255,255,0.45); transition: color 0.3s; }
+.aex-footer-social a:hover { color: #fff; }
+
+/* WhatsApp flutuante (só mobile — no desktop já há telefone no cabeçalho e rodapé) */
+.aex-whatsapp-float { display: none; position: fixed; right: 20px; bottom: 20px; z-index: 80; align-items: center; gap: 10px; padding: 12px 20px 12px 14px; background: var(--ink); color: #fff; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.aex-whatsapp-float .ic { color: var(--slate); }
+@media (max-width: 900px) { .aex-whatsapp-float { display: inline-flex; } }
